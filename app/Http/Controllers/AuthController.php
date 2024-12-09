@@ -62,10 +62,22 @@ class AuthController extends Controller
 
         $token = $user->createToken('API Token')->plainTextToken;
 
+        $store = $user->store;
+
+        if (!$store) {
+            return response()->json([
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'user' => $user,
+                'store' => null,
+            ]);
+        }
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
             'user' => $user,
+            'store' => $store,
         ]);
     }
 
