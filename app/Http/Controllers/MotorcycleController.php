@@ -46,7 +46,7 @@ class MotorcycleController extends Controller
             'name' => $request->name,
             'price' => $request->price,
             'rating' => $request->rating ?? 0,
-            'photo' => $request->photo ? $request->file('photo')->store('motorcycles') : null,
+            'photo' => $request->photo ? $request->file('photo')->store('motorcycles', 'public') : null,
         ]);
 
         $motorcycle->save();

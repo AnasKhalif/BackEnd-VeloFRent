@@ -41,7 +41,7 @@ class StoreController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'location' => $request->location,
-            'photo' => $request->photo ? $request->file('photo')->store('stores') : null,
+            'photo' => $request->photo ? $request->file('photo')->store('stores', 'public') : null,
             'owner_id_card' => $request->owner_id_card,
         ]);
 

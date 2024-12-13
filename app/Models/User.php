@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Store::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

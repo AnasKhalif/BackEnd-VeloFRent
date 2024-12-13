@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\MotorcycleController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\PostController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -31,4 +32,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/brands', [BrandController::class, 'index']);
     Route::post('/brands', [BrandController::class, 'store']);
+
+    Route::apiResource('posts', PostController::class);
 });

@@ -27,7 +27,7 @@ class BrandController extends Controller
 
         $brand = new Brand([
             'name' => $request->name,
-            'photo' => $request->photo ? $request->file('photo')->store('brands') : null,
+            'photo' => $request->photo ? $request->file('photo')->store('brands', 'public') : null,
         ]);
 
         $brand->save();
