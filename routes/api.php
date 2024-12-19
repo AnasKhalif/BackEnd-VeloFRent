@@ -9,10 +9,11 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\MotorcycleController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\OrderController;
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 
 #Login With Google
 Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle']);
@@ -29,9 +30,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/motorcycles', [MotorcycleController::class, 'index']);
     Route::post('/motorcycles', [MotorcycleController::class, 'store']);
+    Route::get('/motorcycles/create', [MotorcycleController::class, 'create']);
 
     Route::get('/brands', [BrandController::class, 'index']);
     Route::post('/brands', [BrandController::class, 'store']);
 
-    Route::apiResource('posts', PostController::class);
+    Route::resource('posts', PostController::class);
 });
+
+Route::post('orders', [OrderController::class, 'store']);
+Route::get('orders', [OrderController::class, 'index']);
+Route::put('orders/{id}', [OrderController::class, 'update']);
+Route::delete('orders/{id}', [OrderController::class, 'destroy']);
